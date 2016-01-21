@@ -16,6 +16,7 @@ module ActsAsMessageable
           scope :aam_search,      lambda { |*args|  where("body like :search_txt or topic like :search_txt",:search_txt => "%#{args.first}%")}
         else
           scope :search,          lambda { |*args|  where("body like :search_txt or topic like :search_txt",:search_txt => "%#{args.first}%")}
+        end
         scope :connected_with,    lambda { |*args|  where("(sent_messageable_type = :sent_type and
                                                   sent_messageable_id = :sent_id and
                                                   sender_delete = :s_delete and sender_permanent_delete = :s_perm_delete) or
